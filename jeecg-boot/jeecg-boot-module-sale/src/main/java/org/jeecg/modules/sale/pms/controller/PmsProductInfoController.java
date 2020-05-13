@@ -140,18 +140,32 @@ public class PmsProductInfoController extends JeecgController<PmsProductInfo, IP
 	}
 
 	/**
-	 * 通过id查询
-	 *
-	 * @param id
-	 * @return
-	 */
-	@AutoLog(value = "商品详情-通过id查询")
-	@ApiOperation(value="商品详情-通过id查询", notes="商品详情-通过id查询")
-	@GetMapping(value = "/queryById")
-	public Result<?> queryById(@RequestParam(name="id",required=true) String id) {
-		PmsProductInfo pmsProductInfo = pmsProductInfoService.getById(id);
-		return Result.ok(pmsProductInfo);
-	}
+	  * 通过id查询
+	  *
+	  * @param id
+	  * @return
+	  */
+	 @AutoLog(value = "商品详情-通过id查询")
+	 @ApiOperation(value="商品详情-通过id查询", notes="商品详情-通过id查询")
+	 @GetMapping(value = "/queryById")
+	 public Result<?> queryById(@RequestParam(name="id",required=true) String id) {
+		 PmsProductInfo pmsProductInfo = pmsProductInfoService.getById(id);
+		 return Result.ok(pmsProductInfo);
+	 }
+
+	 /**
+	  * 查询assignmentId为空的
+	  *
+	  * @param
+	  * @return
+	  */
+	 @AutoLog(value = "商品详情-查询assignmentId为空的所有的商品")
+	 @ApiOperation(value="商品详情-通过assignmentId为空的所有的商品", notes="商品详情-通过assignmentId为空的所有的商品")
+	 @GetMapping(value = "/queryAssignmentIdNull")
+	 public Result<?> queryAssignmentIdNull() {
+		 List<PmsProductInfo> pmsProductInfoList = pmsProductInfoService.selectProductByNullAssignmentId();
+		 return Result.ok(pmsProductInfoList);
+	 }
 
   /**
    * 导出excel

@@ -33,7 +33,7 @@ public class PmsProductInfo {
 	/**id标志*/
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "id标志")
-	//private java.lang.Long id;
+	//private java.lang.String id;
 	private java.lang.String id;
 	//private BigInteger id;
 	/**序列号*/

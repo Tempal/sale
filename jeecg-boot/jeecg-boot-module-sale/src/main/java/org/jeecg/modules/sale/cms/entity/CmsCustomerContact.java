@@ -60,6 +60,10 @@ public class CmsCustomerContact {
 	@Excel(name = "职业", width = 15)
     @ApiModelProperty(value = "职业")
 	private java.lang.String job;
+	/**职业*/
+	@Excel(name = "地址", width = 15)
+	@ApiModelProperty(value = "地址")
+	private java.lang.String address;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")

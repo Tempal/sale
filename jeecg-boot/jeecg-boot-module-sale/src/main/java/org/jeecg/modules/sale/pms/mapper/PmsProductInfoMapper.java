@@ -37,7 +37,7 @@ public interface PmsProductInfoMapper extends BaseMapper<PmsProductInfo> {
      * @date 2020/5/11 21:39
      * @auther Tempal
      */
-    @Update("UPDATE PMS_PRODUCT_INFO SET ASSIGNMENT_ID = '' WHERE ASSIGNMENT_ID = #{assignmentId}")
+    @Update("UPDATE PMS_PRODUCT_INFO SET ASSIGNMENT_ID IS NULL WHERE ASSIGNMENT_ID = #{assignmentId}")
     public boolean resetAssignmentById(String assignmentId);
 
     /***
@@ -50,4 +50,15 @@ public interface PmsProductInfoMapper extends BaseMapper<PmsProductInfo> {
      */
     @Select("SELECT * FROM PMS_PRODUCT_INFO WHERE ASSIGNMENT_ID = #{assignmentId}")
     public List<PmsProductInfo> selectProductInfoByAssignmentId(String assignmentId);
+
+    /***
+     *
+     * @Description 根据
+     * @param
+     * @return java.util.List<org.jeecg.modules.sale.pms.entity.PmsProductInfo>
+     * @date 2020/5/11 21:43
+     * @auther Tempal
+     */
+    @Select("SELECT * FROM PMS_PRODUCT_INFO WHERE ASSIGNMENT_ID IS NULL")
+    public List<PmsProductInfo> selectProductInfoByNullAssignmentId();
 }

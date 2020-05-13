@@ -21,7 +21,11 @@ public class PmsProductInfoServiceImpl extends ServiceImpl<PmsProductInfoMapper,
     @Autowired
     private PmsProductInfoMapper pmsProductInfoMapper;
     @Override
-    public List<PmsProductInfo> selectTicketsByMainId(String mainId){
+    public List<PmsProductInfo> selectProductByAssignmentId(String mainId){
         return pmsProductInfoMapper.selectProductInfoByAssignmentId(mainId);
+    }
+    @Override
+    public List<PmsProductInfo> selectProductByNullAssignmentId(){
+        return pmsProductInfoMapper.selectProductInfoByNullAssignmentId();
     }
 }

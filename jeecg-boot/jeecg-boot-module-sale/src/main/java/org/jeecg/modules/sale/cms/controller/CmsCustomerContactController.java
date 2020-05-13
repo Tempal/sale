@@ -48,7 +48,7 @@ import io.swagger.annotations.ApiOperation;
 public class CmsCustomerContactController extends JeecgController<CmsCustomerContact, ICmsCustomerContactService> {
 	@Autowired
 	private ICmsCustomerContactService cmsCustomerContactService;
-	
+
 	/**
 	 * 分页列表查询
 	 *
@@ -70,7 +70,7 @@ public class CmsCustomerContactController extends JeecgController<CmsCustomerCon
 		IPage<CmsCustomerContact> pageList = cmsCustomerContactService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
-	
+
 	/**
 	 * 添加
 	 *
@@ -84,7 +84,7 @@ public class CmsCustomerContactController extends JeecgController<CmsCustomerCon
 		cmsCustomerContactService.save(cmsCustomerContact);
 		return Result.ok("添加成功！");
 	}
-	
+
 	/**
 	 * 编辑
 	 *
@@ -98,7 +98,7 @@ public class CmsCustomerContactController extends JeecgController<CmsCustomerCon
 		cmsCustomerContactService.updateById(cmsCustomerContact);
 		return Result.ok("编辑成功!");
 	}
-	
+
 	/**
 	 * 通过id删除
 	 *
@@ -112,7 +112,7 @@ public class CmsCustomerContactController extends JeecgController<CmsCustomerCon
 		cmsCustomerContactService.removeById(id);
 		return Result.ok("删除成功!");
 	}
-	
+
 	/**
 	 * 批量删除
 	 *
@@ -126,7 +126,7 @@ public class CmsCustomerContactController extends JeecgController<CmsCustomerCon
 		this.cmsCustomerContactService.removeByIds(Arrays.asList(ids.split(",")));
 		return Result.ok("批量删除成功！");
 	}
-	
+
 	/**
 	 * 通过id查询
 	 *
@@ -163,5 +163,20 @@ public class CmsCustomerContactController extends JeecgController<CmsCustomerCon
   public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
       return super.importExcel(request, response, CmsCustomerContact.class);
   }
+
+	 /**
+	  * 查询联系人
+	  *
+	  * @param
+	  * @return
+	  */
+	 @AutoLog(value = "联系人管理-查询所有联系人")
+	 @ApiOperation(value="联系人管理-查询所有联系人", notes="订单类型-查询所有联系人")
+	 @GetMapping(value = "/queryAllContact")
+	 public Result<?> queryAllContact( ) {
+		 QueryWrapper<CmsCustomerContact> queryWrapper = new QueryWrapper<>();
+		 queryWrapper.select("id,username,company,phone,address");
+		 return Result.ok(cmsCustomerContactService.list(queryWrapper));
+	 }
 
 }

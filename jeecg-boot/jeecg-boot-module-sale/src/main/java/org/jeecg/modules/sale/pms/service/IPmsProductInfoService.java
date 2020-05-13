@@ -12,6 +12,8 @@ import java.util.List;
  * @Version: V1.0
  */
 public interface IPmsProductInfoService extends IService<PmsProductInfo> {
-    public List<PmsProductInfo> selectTicketsByMainId(String mainId);
+    public List<PmsProductInfo> selectProductByAssignmentId(String mainId);
+
+    public List<PmsProductInfo> selectProductByNullAssignmentId();
 
 }

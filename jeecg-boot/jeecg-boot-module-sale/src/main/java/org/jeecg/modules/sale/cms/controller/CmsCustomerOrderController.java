@@ -48,7 +48,7 @@ import io.swagger.annotations.ApiOperation;
 public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder, ICmsCustomerOrderService> {
 	@Autowired
 	private ICmsCustomerOrderService cmsCustomerOrderService;
-	
+
 	/**
 	 * 分页列表查询
 	 *
@@ -70,7 +70,7 @@ public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder
 		IPage<CmsCustomerOrder> pageList = cmsCustomerOrderService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
-	
+
 	/**
 	 * 添加
 	 *
@@ -84,7 +84,7 @@ public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder
 		cmsCustomerOrderService.save(cmsCustomerOrder);
 		return Result.ok("添加成功！");
 	}
-	
+
 	/**
 	 * 编辑
 	 *
@@ -98,7 +98,7 @@ public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder
 		cmsCustomerOrderService.updateById(cmsCustomerOrder);
 		return Result.ok("编辑成功!");
 	}
-	
+
 	/**
 	 * 通过id删除
 	 *
@@ -112,7 +112,7 @@ public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder
 		cmsCustomerOrderService.removeById(id);
 		return Result.ok("删除成功!");
 	}
-	
+
 	/**
 	 * 批量删除
 	 *
@@ -126,7 +126,7 @@ public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder
 		this.cmsCustomerOrderService.removeByIds(Arrays.asList(ids.split(",")));
 		return Result.ok("批量删除成功！");
 	}
-	
+
 	/**
 	 * 通过id查询
 	 *
@@ -164,4 +164,19 @@ public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder
       return super.importExcel(request, response, CmsCustomerOrder.class);
   }
 
+
+	 /**
+	  * 查询所有订单号
+	  *
+	  * @param
+	  * @return
+	  */
+	 @AutoLog(value = "商品品牌-查询所有订单号")
+	 @ApiOperation(value="商品品牌-查询所有订单号", notes="商品品牌-查询所有订单号")
+	 @GetMapping(value = "/queryAllOrderId")
+	 public Result<?> queryAllOrderId() {
+		 QueryWrapper<CmsCustomerOrder> queryWrapper = new QueryWrapper<>();
+		 queryWrapper.select("order_id");
+		 return Result.ok(cmsCustomerOrderService.list(queryWrapper));
+	 }
 }

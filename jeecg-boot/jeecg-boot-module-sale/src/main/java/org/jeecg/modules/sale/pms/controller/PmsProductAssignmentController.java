@@ -165,7 +165,7 @@ public class PmsProductAssignmentController extends JeecgController<PmsProductAs
 	 @ApiOperation(value="货物分配-通过id查询货物详情", notes="货物分配-通过id查询货物详情")
 	 @GetMapping(value = "/queryProductInfoById")
 	 public Result<?> queryProductInfoById(@RequestParam(name="id",required=true) String id) {
-		 List<PmsProductInfo> pmsProductInfoList = pmsProductInfoService.selectTicketsByMainId(id);
+		 List<PmsProductInfo> pmsProductInfoList = pmsProductInfoService.selectProductByAssignmentId(id);
 		 return Result.ok(pmsProductInfoList);
 	 }
 

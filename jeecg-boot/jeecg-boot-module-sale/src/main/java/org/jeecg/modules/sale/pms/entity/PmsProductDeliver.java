@@ -27,11 +27,11 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 @Accessors(chain = true)
 @ApiModel(value="pms_product_deliver对象", description="物流信息")
 public class PmsProductDeliver {
-    
+
 	/**物流流水号*/
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "物流流水号")
-	private java.lang.Integer id;
+	private java.lang.String id;
 	/**快递号*/
 	@Excel(name = "快递号", width = 15)
     @ApiModelProperty(value = "快递号")
@@ -39,11 +39,19 @@ public class PmsProductDeliver {
 	/**收货人id*/
 	@Excel(name = "收货人id", width = 15)
     @ApiModelProperty(value = "收货人id")
-	private java.lang.Integer receivePeopleId;
+	private java.lang.String receivePeopleId;
 	/**发货人id*/
 	@Excel(name = "发货人id", width = 15)
     @ApiModelProperty(value = "发货人id")
-	private java.lang.Integer sendPeopleId;
+	private java.lang.String sendPeopleId;
+	/**收货人id*/
+	@Excel(name = "收货人名", width = 15)
+	@ApiModelProperty(value = "收货人名")
+	private java.lang.String receivePeopleName;
+	/**发货人id*/
+	@Excel(name = "发货人名", width = 15)
+	@ApiModelProperty(value = "发货人名")
+	private java.lang.String sendPeopleName;
 	/**发货时间*/
 	@Excel(name = "发货时间", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
@@ -66,6 +74,10 @@ public class PmsProductDeliver {
 	@Excel(name = "详细地址", width = 15)
     @ApiModelProperty(value = "详细地址")
 	private java.lang.String detailAddress;
+	/**详细地址*/
+	@Excel(name = "收货人电话", width = 15)
+	@ApiModelProperty(value = "收货人电话")
+	private java.lang.String receivePeoplePhone;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")

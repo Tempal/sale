@@ -48,7 +48,7 @@ import io.swagger.annotations.ApiOperation;
 public class PmsProductDeliverController extends JeecgController<PmsProductDeliver, IPmsProductDeliverService> {
 	@Autowired
 	private IPmsProductDeliverService pmsProductDeliverService;
-	
+
 	/**
 	 * 分页列表查询
 	 *
@@ -70,7 +70,7 @@ public class PmsProductDeliverController extends JeecgController<PmsProductDeliv
 		IPage<PmsProductDeliver> pageList = pmsProductDeliverService.page(page, queryWrapper);
 		return Result.ok(pageList);
 	}
-	
+
 	/**
 	 * 添加
 	 *
@@ -84,7 +84,7 @@ public class PmsProductDeliverController extends JeecgController<PmsProductDeliv
 		pmsProductDeliverService.save(pmsProductDeliver);
 		return Result.ok("添加成功！");
 	}
-	
+
 	/**
 	 * 编辑
 	 *
@@ -98,7 +98,7 @@ public class PmsProductDeliverController extends JeecgController<PmsProductDeliv
 		pmsProductDeliverService.updateById(pmsProductDeliver);
 		return Result.ok("编辑成功!");
 	}
-	
+
 	/**
 	 * 通过id删除
 	 *
@@ -112,7 +112,7 @@ public class PmsProductDeliverController extends JeecgController<PmsProductDeliv
 		pmsProductDeliverService.removeById(id);
 		return Result.ok("删除成功!");
 	}
-	
+
 	/**
 	 * 批量删除
 	 *
@@ -126,7 +126,7 @@ public class PmsProductDeliverController extends JeecgController<PmsProductDeliv
 		this.pmsProductDeliverService.removeByIds(Arrays.asList(ids.split(",")));
 		return Result.ok("批量删除成功！");
 	}
-	
+
 	/**
 	 * 通过id查询
 	 *
@@ -164,4 +164,19 @@ public class PmsProductDeliverController extends JeecgController<PmsProductDeliv
       return super.importExcel(request, response, PmsProductDeliver.class);
   }
 
+
+	 /**
+	  * 查询所有订单号
+	  *
+	  * @param
+	  * @return
+	  */
+	 @AutoLog(value = "商品品牌-查询所有订单号")
+	 @ApiOperation(value="商品品牌-查询所有订单号", notes="商品品牌-查询所有订单号")
+	 @GetMapping(value = "/queryAllDeliverId")
+	 public Result<?> queryAllDeliverId() {
+		 QueryWrapper<PmsProductDeliver> queryWrapper = new QueryWrapper<>();
+		 queryWrapper.select("tracking_id");
+		 return Result.ok(pmsProductDeliverService.list(queryWrapper));
+	 }
 }
