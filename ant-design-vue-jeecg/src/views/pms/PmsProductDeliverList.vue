@@ -28,7 +28,7 @@
             </a-form-item>
           </a-col>
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
-            <a-form-item label="是否收获，0还未收，1已经接收">
+            <a-form-item label="是否收获">
               <a-input placeholder="请输入是否收获，0还未收，1已经接收" v-model="queryParam.receiveStatus"></a-input>
             </a-form-item>
           </a-col>
@@ -132,20 +132,41 @@
               return parseInt(index)+1;
             }
            },
+          {
+            title: '物流号',
+            align:"center",
+            dataIndex: 'id'
+          },
 		   {
             title: '快递号',
             align:"center",
             dataIndex: 'trackingId'
            },
 		   {
-            title: '收货人id',
+            title: '收货人',
             align:"center",
-            dataIndex: 'receivePeopleId'
+            dataIndex: 'receivePeopleName'
            },
-		   {
-            title: '发货人id',
+          {
+            title: '收货人电话',
             align:"center",
-            dataIndex: 'sendPeopleId'
+            dataIndex: 'receivePeoplePhone'
+          },
+          {
+            title: '公司名称',
+            align:"center",
+            dataIndex: 'companyName'
+          },
+          {
+            title: '详细地址',
+            align:"center",
+            dataIndex: 'detailAddress'
+          },
+
+		   {
+            title: '发货人',
+            align:"center",
+            dataIndex: 'sendPeopleName'
            },
 		   {
             title: '发货时间',
@@ -153,25 +174,16 @@
             dataIndex: 'sendTime'
            },
 		   {
-            title: '是否收获，0还未收，1已经接收',
+            title: '是否收货',
             align:"center",
             dataIndex: 'receiveStatus'
            },
 		   {
-            title: '收货佐证，网址，上传到阿里云或者minio',
+            title: '收货佐证',
             align:"center",
             dataIndex: 'certificate'
            },
-		   {
-            title: '公司名称',
-            align:"center",
-            dataIndex: 'companyName'
-           },
-		   {
-            title: '详细地址',
-            align:"center",
-            dataIndex: 'detailAddress'
-           },
+
           {
             title: '操作',
             dataIndex: 'action',
@@ -194,7 +206,7 @@
     }
   },
     methods: {
-     
+
     }
   }
 </script>

@@ -42,7 +42,6 @@
           <a-select   showSearch
                       optionFilterProp="children"
                       :filterOption="filterOption"
-                      :value="value"
                       v-decorator="[ 'partyA', { required: true }]">
             <a-select-option v-for="(item,key) in companyName" :key="key" :value="item.name">
               {{ item.name }}
@@ -56,7 +55,6 @@
           <a-select   showSearch
                       optionFilterProp="children"
                       :filterOption="filterOption"
-                      :value="value"
                       v-decorator="[ 'partyB', { required: true }]">
             <a-select-option v-for="(item,key) in companyName" :key="key" :value="item.name">
               {{ item.name }}

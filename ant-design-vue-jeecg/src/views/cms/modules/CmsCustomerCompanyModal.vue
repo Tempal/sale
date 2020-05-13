@@ -24,7 +24,7 @@
           <!--<a-select  showSearch-->
                      <!--optionFilterProp="children"-->
                      <!--:filterOption="filterOption"-->
-                     <!--:value="value" v-decorator="[ 'city', { required: true, message: '请选择地市局' }]">-->
+                     <!--:v-decorator="[ 'city', { required: true, message: '请选择地市局' }]">-->
           <a-select  showSearch
                      optionFilterProp="children"
                      :filterOption="filterOption"

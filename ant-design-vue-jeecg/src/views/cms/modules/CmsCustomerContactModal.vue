@@ -30,7 +30,6 @@
           <a-select   showSearch
                       optionFilterProp="children"
                       :filterOption="filterOption"
-                      :value="value"
                       v-decorator="[ 'company', { required: true }]">
             <a-select-option v-for="(item,key) in companyName" :key="key" :value="item.name">
               {{ item.name }}
@@ -53,6 +52,12 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
+          label="详细地址">
+          <a-input placeholder="请输入详细地址" v-decorator="['address']" />
+        </a-form-item>
+        <a-form-item
+          :labelCol="labelCol"
+          :wrapperCol="wrapperCol"
           label="性别">
           <j-dict-select-tag v-decorator="[ 'gender', {initialValue:'1'}]" 	:triggerChange="true" dictCode="sex" type="radio"/>
         </a-form-item>
@@ -63,7 +68,7 @@
           <a-select  showSearch
                      optionFilterProp="children"
                      :filterOption="filterOption"
-                     :value="value" v-decorator="[ 'city', { required: true, message: '请选择地市局' }]">
+                     v-decorator="[ 'city', { required: true, message: '请选择地市局' }]">
             <a-select-option v-for="(item,key) in allArea" :key="key" :value="item.area">
               {{ item.area }}
             </a-select-option>
@@ -92,6 +97,7 @@
     data () {
       return {
         title:"操作",
+        bAdd: false,
         visible: false,
         allArea: {},
         companyName: {},
@@ -134,6 +140,7 @@
     },
     methods: {
       add () {
+        this.bAdd = true;
         this.edit({});
       },
       edit (record) {
@@ -141,7 +148,7 @@
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model,'id','username','company','nickname','phone','gender','city','job'))
+          this.form.setFieldsValue(pick(this.model,'id','username','company','nickname','phone','gender','city','job','address'))
 		  //时间格式化
         });
 
@@ -152,15 +159,17 @@
       },
       handleOk () {
         const that = this;
+        console.log("bAdd value is "+this.bAdd);
         // 触发表单验证
         this.form.validateFields((err, values) => {
           if (!err) {
             that.confirmLoading = true;
             let httpurl = '';
             let method = '';
-            if(!this.model.id){
+            if(this.bAdd == true){
               httpurl+=this.url.add;
               method = 'post';
+              this.bAdd=false;
             }else{
               httpurl+=this.url.edit;
                method = 'put';

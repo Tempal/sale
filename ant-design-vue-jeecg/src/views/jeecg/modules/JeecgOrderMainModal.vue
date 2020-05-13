@@ -195,14 +195,18 @@
           //初始化订单机票列表
           getAction(this.url.orderCustomerList,params).then((res)=>{
             if(res.success){
-              this.orderMainModel.jeecgOrderCustomerList = res.result;
+              if(res.result!=null)
+                this.orderMainModel.jeecgOrderCustomerList = res.result;
+              else
+                this.orderMainModel.jeecgOrderTicketList = [{}];
               this.$forceUpdate()
             }
           })
           //初始化订单客户列表
           getAction(this.url.orderTicketList,params).then((res)=>{
             if(res.success){
-              this.orderMainModel.jeecgOrderTicketList = res.result;
+              if(res.result!=null)
+                this.orderMainModel.jeecgOrderTicketList = res.result;
               this.$forceUpdate()
             }
           })

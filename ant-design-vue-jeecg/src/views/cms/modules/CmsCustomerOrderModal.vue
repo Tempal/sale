@@ -137,6 +137,7 @@
         allOrderType: {},
         allContractNo: {},
         visible: false,
+        bAdd: false,
         model: {},
         labelCol: {
           xs: { span: 24 },
@@ -163,6 +164,7 @@
       {
           console.log("area result is " + JSON.stringify(res.result));
           this.allArea = res.result;
+          console.log(" allArea is "+JSON.stringify(res.result));
       });
       getAction("/pms/pmsProductModel/queryAllModel").then((res)=>
       {
@@ -189,7 +191,7 @@
     },
     methods: {
       add () {
-
+        this.bAdd=true;
         this.edit({});
       },
       edit (record) {
@@ -209,6 +211,7 @@
       close () {
         this.$emit('close');
         this.visible = false;
+        this.bAdd=false;
       },
       handleOk () {
         const that = this;
@@ -218,7 +221,7 @@
             that.confirmLoading = true;
             let httpurl = '';
             let method = '';
-            if(!this.model.orderId){
+            if(this.bAdd==true){
               httpurl+=this.url.add;
               method = 'post';
             }else{

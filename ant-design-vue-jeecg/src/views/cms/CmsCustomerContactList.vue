@@ -168,6 +168,11 @@
             dataIndex: 'job'
            },
           {
+            title: '详细地址',
+            align:"center",
+            dataIndex: 'address'
+          },
+          {
             title: '操作',
             dataIndex: 'action',
             align:"center",
