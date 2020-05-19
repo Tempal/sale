@@ -51,11 +51,15 @@ public class PmsProductAssignmentServiceImpl extends ServiceImpl<PmsProductAssig
     public void updateMain(PmsProductAssignment pmsProductAssignment, List<PmsProductInfo> pmsProductInfoList){
         pmsProductAssignmentMapper.updateById(pmsProductAssignment);
         String sId=pmsProductAssignment.getId();
+
         //2.子表数据更新
+        pmsProductInfoMapper.resetAssignmentById(sId);
         if (pmsProductInfoList != null) {
             for (PmsProductInfo entity : pmsProductInfoList) {
 //                entity.setAssignmentId(pmsProductAssignment.getId());
-                pmsProductInfoMapper.updateAssignmentById(sId,entity.getId());
+//                pmsProductInfoMapper.updateAssignmentById(sId,entity.getId());
+                entity.setAssignmentId(sId);
+                pmsProductInfoMapper.updateById(entity);
             }
         }
     }

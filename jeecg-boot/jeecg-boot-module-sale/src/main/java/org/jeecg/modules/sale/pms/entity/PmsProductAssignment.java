@@ -35,19 +35,15 @@ public class PmsProductAssignment {
 	/**订单id*/
 	@Excel(name = "订单id", width = 15)
     @ApiModelProperty(value = "订单id")
-	private java.lang.Integer orderId;
+	private java.lang.String orderId;
 	/**物流id*/
 	@Excel(name = "物流id", width = 15)
     @ApiModelProperty(value = "物流id")
-	private java.lang.Integer deliverId;
+	private java.lang.String deliverId;
 	/**地区id*/
 	@Excel(name = "地区id", width = 15)
     @ApiModelProperty(value = "地区id")
-	private java.lang.Integer areaId;
-	/**货物id*/
-	@Excel(name = "货物id", width = 15)
-    @ApiModelProperty(value = "货物id")
-	private java.lang.Integer productId;
+	private java.lang.String areaId;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")

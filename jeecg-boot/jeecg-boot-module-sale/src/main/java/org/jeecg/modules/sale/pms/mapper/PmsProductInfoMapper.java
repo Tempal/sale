@@ -21,13 +21,13 @@ public interface PmsProductInfoMapper extends BaseMapper<PmsProductInfo> {
      *
      * @Description 按照id更新
      * @param assignmentId
-     * @param Id
+     * @param id
      * @return boolean
      * @date 2020/5/11 20:46
      * @auther Tempal
      */
     @Update("UPDATE PMS_PRODUCT_INFO SET ASSIGNMENT_ID = #{assignmentId} WHERE ID= #{id}")
-    public boolean updateAssignmentById(String assignmentId,String Id);
+    public boolean updateAssignmentById(String assignmentId,String id);
 
     /***
      *
@@ -37,7 +37,7 @@ public interface PmsProductInfoMapper extends BaseMapper<PmsProductInfo> {
      * @date 2020/5/11 21:39
      * @auther Tempal
      */
-    @Update("UPDATE PMS_PRODUCT_INFO SET ASSIGNMENT_ID IS NULL WHERE ASSIGNMENT_ID = #{assignmentId}")
+    @Update("UPDATE PMS_PRODUCT_INFO SET ASSIGNMENT_ID = NULL WHERE ASSIGNMENT_ID = #{assignmentId}")
     public boolean resetAssignmentById(String assignmentId);
 
     /***

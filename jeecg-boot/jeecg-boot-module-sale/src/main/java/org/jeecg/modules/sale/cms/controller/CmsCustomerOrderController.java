@@ -176,7 +176,7 @@ public class CmsCustomerOrderController extends JeecgController<CmsCustomerOrder
 	 @GetMapping(value = "/queryAllOrderId")
 	 public Result<?> queryAllOrderId() {
 		 QueryWrapper<CmsCustomerOrder> queryWrapper = new QueryWrapper<>();
-		 queryWrapper.select("order_id");
+		 queryWrapper.select("order_id,assigned_area");
 		 return Result.ok(cmsCustomerOrderService.list(queryWrapper));
 	 }
 }

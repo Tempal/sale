@@ -152,7 +152,19 @@ public class PmsProductInfoController extends JeecgController<PmsProductInfo, IP
 		 PmsProductInfo pmsProductInfo = pmsProductInfoService.getById(id);
 		 return Result.ok(pmsProductInfo);
 	 }
-
+	 /**
+	  * 通过分配id查询
+	  *
+	  * @param assignmentId
+	  * @return
+	  */
+	 @AutoLog(value = "商品详情-通过assignmentId查询")
+	 @ApiOperation(value="商品详情-通过assignmentId查询", notes="商品详情-通过assignmentId查询")
+	 @GetMapping(value = "/queryByAssignmentId")
+	 public Result<?> queryByAssignmentId(@RequestParam(name="assignmentId",required=true) String assignmentId) {
+		 List<PmsProductInfo> pmsProductInfoList = pmsProductInfoService.selectProductByAssignmentId(assignmentId);
+		 return Result.ok(pmsProductInfoList);
+	 }
 	 /**
 	  * 查询assignmentId为空的
 	  *
@@ -162,10 +174,24 @@ public class PmsProductInfoController extends JeecgController<PmsProductInfo, IP
 	 @AutoLog(value = "商品详情-查询assignmentId为空的所有的商品")
 	 @ApiOperation(value="商品详情-通过assignmentId为空的所有的商品", notes="商品详情-通过assignmentId为空的所有的商品")
 	 @GetMapping(value = "/queryAssignmentIdNull")
-	 public Result<?> queryAssignmentIdNull() {
-		 List<PmsProductInfo> pmsProductInfoList = pmsProductInfoService.selectProductByNullAssignmentId();
-		 return Result.ok(pmsProductInfoList);
+	 public Result<IPage<PmsProductInfo>> queryAssignmentIdNull(PmsProductInfo pmsProductInfo,
+																@RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+																@RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+																HttpServletRequest req) {
+		 Result<IPage<PmsProductInfo>> result = new Result<IPage<PmsProductInfo>>();
+		 QueryWrapper<PmsProductInfo> queryWrapper = QueryGenerator.initQueryWrapper(pmsProductInfo, req.getParameterMap());
+		 queryWrapper.isNull("ASSIGNMENT_ID");
+		 Page<PmsProductInfo> page = new Page<PmsProductInfo>(pageNo, pageSize);
+
+		 IPage<PmsProductInfo> pageList = pmsProductInfoService.page(page, queryWrapper);
+		 result.setSuccess(true);
+		 result.setResult(pageList);
+		 return result;
 	 }
+//	 public Result<?> queryAssignmentIdNull() {
+//		 List<PmsProductInfo> pmsProductInfoList = pmsProductInfoService.selectProductByNullAssignmentId();
+//		 return Result.ok(pmsProductInfoList);
+//	 }
 
   /**
    * 导出excel

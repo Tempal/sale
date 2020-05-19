@@ -21,13 +21,13 @@ import java.util.List;
 public class PmsProductAssignmentPage {
     /**流水号*/
     @TableId(type = IdType.ID_WORKER_STR)
-    private java.lang.Integer id;
+    private java.lang.String id;
     /**订单号*/
     @Excel(name = "订单号", width = 15)
-    private java.lang.Integer orderId;
+    private java.lang.String orderId;
     /**物流号*/
     @Excel(name = "物流号", width = 15)
-    private java.lang.Integer deliverId;
+    private java.lang.String deliverId;
     /**地区*/
     @Excel(name = "地区", width = 15)
     private java.lang.String areaId;
